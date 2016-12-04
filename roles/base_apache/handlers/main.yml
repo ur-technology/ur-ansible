@@ -1,0 +1,7 @@
+---
+# file: roles/base_apache/handlers/main.yml
+# name: Apache Playbook Handlers
+- name: restart apache
+  service:
+    name: "{{ apache_service }}"
+    state: restarted

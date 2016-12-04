@@ -1,0 +1,39 @@
+---
+# file: roles/base_apache/tasks/main.yml
+# name: Include and define required Apache variables.
+
+- name: Include variables.
+  include_vars:"main.yml"
+
+- name: Define apache_packages.
+  set_fact:
+    apache_packages: "{{ __apache_packages | list }}"
+  when: apache_packages is not defined
+
+- include: "setup.yml"
+  static: no
+
+- name: Get installed version of Apache.
+  shell: "{{ apache_daemon_path }}{{ apache_daemon }} -v"
+  changed_when: false
+  always_run: yes
+  register: _apache_version
+
+- name: Create apache_version variable.
+  set_fact:
+    apache_version: "{{ _apache_version.stdout.split()[2].split('/')[1] }}"
+
+- include_vars: apache-22.yml
+  when: "apache_version.split('.')[1] == '2'"
+
+- include_vars: apache-24.yml
+  when: "apache_version.split('.')[1] == '4'"
+
+- include: "configure.yml"
+  static: no
+
+- name: Ensure Apache has selected state and is enabled on boot.
+  service:
+    name: "{{ apache_service }}"
+    state: "{{ apache_state }}"
+    enabled: yes

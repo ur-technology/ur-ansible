@@ -1,0 +1,7 @@
+---
+# file: explorer.yml
+# name: Master Explorer Playbook
+- hosts: explorer
+  roles:
+    - common
+    - explorer

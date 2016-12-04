@@ -1,0 +1,20 @@
+---
+# file: roles/deploy-test/tasks/main.yml
+# name: Test Deployment Tasks
+- name: Test Deployment Tasks
+  digital_ocean: >
+    api_token="{{ do_api_token }}"
+    backups_enabled={{ do_backups_enabled }}
+    command=droplet
+    image_id={{ do_image_id }}
+    name="{{ item }}"
+    private_networking={{ do_private_networking }}
+    region_id={{ do_region_id }}
+    size_id={{ do_size_id }}
+    ssh_key_ids="{{ ur_ssh_key.ssh_key.id }}"
+    unique_name={{ do_unique_name }}
+    virtio={{ do_virtio }}
+    wait={{ do_wait }}
+    wait_timeout={{ do_wait_timeout}}
+  with_items: "{{ droplets }}"
+  register: "{{ item }}"

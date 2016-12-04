@@ -1,0 +1,4 @@
+---
+# file: roles/common/tasks/main.yml
+# name: Common Playbook
+- include: gur_docker.yml

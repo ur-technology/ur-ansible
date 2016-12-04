@@ -1,0 +1,8 @@
+---
+# file: bootnode.yml
+# name: Master Bootnode Playbook
+- hosts: tor1-bootnode
+  roles:
+    - common
+    - gur
+    - bootnode

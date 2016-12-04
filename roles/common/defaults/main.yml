@@ -1,0 +1,17 @@
+---
+# file: roles/common/defaults/main.yml
+# name: Common Variables 
+
+ur_deploy_user_name: deploy
+ur_deploy_user_password: EqJCDtP7F3qK
+
+ur_common_apt_packages_list:
+  - transport-http
+  - ca-certificates
+
+ur_docker_apt_packages_list:
+  - linux-image-extra-$(uname -r)
+  - linux-image-extra-virtual
+  - docker-engine
+
+

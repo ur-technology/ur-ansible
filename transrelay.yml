@@ -1,0 +1,7 @@
+---
+# file: transrelay.yml
+# name: Master Transaction Relay Playbook
+- hosts: transrelay
+  roles:
+    - common
+    - transrelay

@@ -1,0 +1,10 @@
+---
+# file: roles/common/tasks/main.yml
+# name: Gur Playbook
+- name: Set Up the Environment
+  environment:
+    - BOOTNODES_OPTION: "--bootnodes {{ bootnode1_enode_url }}, {{ bootnode2_enode_url }}"
+    - BOOTNODE_1_NODEHEXKEY: "{{ bootnode1_node_hex_key }}"
+    - BOOTNODE_2_NODEHEXKEY: "{{ bootnode2_node_hex_key }}"
+    - BASE_GUR_OPTIONS: "--networkid {{ ur_network_id }} --datadir {{ ur_data_dir }} --ipcapi='admin,db,eth,debug,miner,net,ssh,txpool,personal,web3'"
+

@@ -1,0 +1,5 @@
+---
+# file: roles/deploy-dev/meta/main.yml
+# name: Development Deployment Dependencies
+dependencies:
+  - {role: create-ssh-key }

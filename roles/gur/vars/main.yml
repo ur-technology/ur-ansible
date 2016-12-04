@@ -1,0 +1,14 @@
+---
+# file: roles/gur/vars/main.yml
+# name: Gur Deployment Variables
+
+ur_network_id: 1004
+ur_data_dir: /home/deploy/ur_data
+ur_money_queue_processor_branch: dev
+bootnode1_enode_url: "enode://fcf730cf678d6296ffa75a1b2c06aa07d9558788762d0bbefbc209ccbfb4e840f7dcfc2f7a188eb2e65056d989de3722df3fc4df286eb3690d4586992c1c6d82@$BOOTNODE_1_PUBLIC_IP:19595"
+bootnode2_enode_url: "enode://d846b3c0445b7a91cfeb56fbeaece55ca9e559a6e5810cc41c54e2b88790fa7a24444508f16eb983630da1367ab73a6db1b705cc36134d9e61a2df070284d3f4@$BOOTNODE_2_PUBLIC_IP:19595"
+bootnode1_node_hex_key: "4b3698f291fe0c9db2de3cbe98f0cf01a4446b1accf1c69cfccb80ee241d8099"
+bootnode2_node_hex_key: "78fd2bf45c4e09d7102a95fb9529876d05d2088cd37a4455b19d2507b0a88cb1"
+bootnodes_option: "--bootnodes {{ bootnode1_enode_url }}, {{ bootnode2_enode_url }}"
+base_gur_options: "--networkid {{ ur_network_id }} --datadir {{ ur_data_dir }} --ipcapi='admin,db,ur,eth,debug,miner,net,shh,txpool,personal,web3'"
+

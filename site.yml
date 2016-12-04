@@ -1,0 +1,8 @@
+---
+# file: site.yml
+# name: Master UR Technology Playbook
+- include: bootnode.yml
+- include: explorer.yml
+- include: queue.yml
+- include: transrelay.yml
+- include: miner.yml

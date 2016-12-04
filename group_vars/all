@@ -1,0 +1,13 @@
+---
+# file: group_vars/all
+# name: Global Variables
+ur_ansible_path: /root/ur-ansible
+ur_user: deploy
+ur_user_groups:
+  - sudo
+  - deploy
+ur_user_workdir: /home/deploy
+gur_port: 9595
+
+
+

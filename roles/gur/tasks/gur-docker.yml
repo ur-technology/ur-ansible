@@ -1,0 +1,15 @@
+---
+# file: roles/common/tasks/gur_docker.yml
+# name: Builds Gur Docker image from Dockerfile
+
+- name: Build Gur Docker image from Dockerfile.
+  docker_image:
+    name: gur
+    path: docker
+    state: build
+
+- name: Run the Gur container.
+  docker:
+    image: gur:latest
+    name: gur
+    state: running

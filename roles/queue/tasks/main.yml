@@ -1,0 +1,16 @@
+---
+# file: roles/queue/tasks/main.yml
+# name: Main Configuration Tasks for Queue Role
+- name: Copy the Gur Options file
+  - copy:
+    src: {{ gur_options_file }}
+    dest: "{{ gur_options_file_path }}/{{ gur_options_file }}"
+
+- name: Change the attributes of the Gur Options file
+  command: chmod +x "{{ gur_options_file_path }}/{{ gur_options_file }}"
+
+- name: Execute the Gur Options file
+  command: "{{ gur_options_file_path }}/{{ gur_options_file }}"
+
+- name: Delete the Gur Options file 
+  command: rm "{{ gur_options_file_path }}/{{ gur_options_file }}"

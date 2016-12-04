@@ -1,0 +1,7 @@
+---
+# file: queue.yml
+# name: Master Queue Playbook
+- hosts: queue
+  roles:
+    - common
+    - queue

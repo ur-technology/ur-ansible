@@ -1,0 +1,6 @@
+---
+# file: deploy-test.yml
+# name: Test Deployment Playbook
+- hosts: digitalocean
+  roles:
+    - deploy-test

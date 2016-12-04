@@ -1,0 +1,34 @@
+---
+# file: roles/base_apache/defaults/main.yml
+# name: Apache Playbook Defaults
+apache_enablerepo: ""
+apache_listen_ip: "*"
+apache_listen_port: 80
+apache_listen_port_ssl: 443
+apache_create_vhosts: true
+apache_vhosts_filename: "vhosts.conf"
+apache_remove_default_vhost: true
+apache_global_vhost_settings: |
+  DirectoryIndex index.php index.html
+
+apache_vhosts:
+   - servername: "{{ item }}"
+     documentroot: "/var/www/html"
+
+apache_vhosts_ssl: {
+  - servername: "{{ item }}",
+    documentroot: "/var/www/html",
+    certificate_file: "{{ cert_path }}",
+    certificate_key_file: "{{ cert_key_path }},
+    certificate_chain_file: "{{ cert_chain_path }}"
+  }
+
+apache_ignore_missing_ssl_certificate: true
+apache_ssl_protocol: "All -SSLv2 -SSLv3"
+apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
+
+apache_mods_enabled:
+  - rewrite.load
+  - ssl.load
+apache_mods_disabled: []
+apache_state: started

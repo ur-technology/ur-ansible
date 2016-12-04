@@ -1,0 +1,32 @@
+---
+# file: inventories/prod/hosts
+# name: Production Inventory
+
+# Toronto Bootnodes
+[toronto-bootnode]
+159.203.36.102
+159.203.14.117
+
+# Toronto Explorers
+[toronto-explorer]
+159.203.38.110
+
+# Toronto Transaction Relays
+[toronto-transrelay]
+138.197.136.94
+
+# Toronto Queues
+[toronto-queue]
+138.197.134.185
+
+# Toronto Miners
+[toronto-miner]
+138.197.128.43
+
+# Everything in Toronto
+[toronto:children]
+toronto-bootnode
+toronto-explorer
+toronto-queue
+toronto-transrelay
+toronto-miner

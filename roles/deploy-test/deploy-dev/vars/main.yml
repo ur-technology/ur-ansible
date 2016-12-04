@@ -1,0 +1,32 @@
+---
+# file: roles/deploy-test/vars/main.yml
+# name: Test Deployment Variables
+# The DO_API_TOKEN environment variable must be set to a valid DO API v2 token.
+do_api_token: "{{ lookup( 'env','DO_API_TOKEN' ) }}"
+# Enable backups for your Droplets?
+do_backups_enabled: no
+# Digital Ocean Image ID - Docker on Ubuntu is default.
+do_image_id: 21132217
+# Enable private networking?  Default is yes.
+do_private_networking: yes
+# Region to launch Droplets? Toronto 1 is default.
+do_region_id: tor1
+# Droplet size.  
+do_size_id: 512mb
+# Unique droplet name? Default is yes.
+do_unique_name: yes
+# Virtio for better performance?  Heck yes!
+do_virtio: yes
+# Wait for the Droplet to finish launching?  Yes, because we need its IP address for inventory.
+do_wait: yes
+# How long do we wait for the Droplet to launch?  Default is 5 minutes.
+do_wait_timeout: 300
+
+# The names of our Droplets.  Don't worry, we will know their IP addresses when they launch.
+droplets:
+  - bootnode-1.dev.ur.technology
+  - bootnode-2.dev.ur.technology
+  - explorer-1.dev.ur.technology
+  - transrelay-1.dev.ur.technology
+  - queue-1.ur.technology
+

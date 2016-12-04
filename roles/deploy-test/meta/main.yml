@@ -1,0 +1,5 @@
+---
+# file: roles/deploy-test/meta/main.yml
+# name: Test Deployment Dependencies
+dependencies:
+  - {role: create-ssh-key }

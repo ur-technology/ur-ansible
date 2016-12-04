@@ -1,0 +1,23 @@
+---
+# file: roles/base_apache/meta/main.yml
+# name: Base Apache Role Meta
+dependencies: []
+
+galaxy_info:
+  author: mrjvazquez
+  description: Apache 2.x for Ubuntu
+  company: "Enkompass"
+  license: "Public Domain"
+  min_ansible_version: 1.9
+  platforms:
+    - name: Ubuntu
+      versions:
+      - precise
+      - raring
+      - saucy
+      - trusty
+      - xenial
+  galaxy_tags:
+    - apache
+    - web
+    - ubuntu

@@ -1,0 +1,19 @@
+---
+# file: deploy-dev.yml
+# name: Development Deployment Playbook
+- hosts: digitalocean
+  roles:
+    - common
+    - bootnode
+    - explorer
+    - queue
+    - transrelay
+    - miner
+
+
+
+
+{% for host in groups['bootnode'] %}
+  #commands for Bootnodes
+{% endfor %}
+

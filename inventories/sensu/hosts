@@ -1,0 +1,25 @@
+[sensu_master]
+monitor.dev.ur.technology 		ansible_host=159.203.30.175
+
+[toronto-bootnode]
+boot2-tor1-do.dev.ur.technology		ansible_host=138.197.138.202
+boot1-tor1-do.dev.ur.technology		ansible_host=138.197.138.155
+
+[toronto-explorer]
+explorer1-tor1-do.dev.ur.technology	ansible_host=138.197.134.168
+
+[toronto-queue]
+
+[toronto-transrelay]
+relay1-tor1-do.dev.ur.technology	ansible_host=138.197.138.35
+
+[toronto-miner]
+miner1-tor1-do.dev.ur.technology 	ansible_host=138.197.134.147
+miner2-tor1-do.dev.ur.technology 	ansible_host=138.197.136.97
+
+[toronto:children]
+toronto-bootnode
+toronto-explorer
+toronto-queue
+toronto-transrelay
+toronto-miner

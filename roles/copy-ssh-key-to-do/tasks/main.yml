@@ -2,10 +2,10 @@
 # file: roles/copy-ssh-key-to-do/tasks/main.yml
 # name: Copy SSH Key to Digital Ocean
 - name: Copy SSH key to Digital Ocean
-  digital_ocean_sshkey: >
-    state: present
-    name: "{{ ur_ssh_key_name }}"
-    ssh_pub_key: "{{ ur_ssh_pub_key }}"
-    api_token: "{{ do_api_token }}"
-  register: "{{ ur_ssh_key_name }}"
-
+  digital_ocean:
+    state="{{ do_ssh_key_state }}"
+    command="ssh"
+    name="{{ do_ssh_key_name }}"
+    ssh_pub_key="{{ do_ssh_pub_key }}"
+    api_token="{{ do_api_token }}"
+  register: "{{ do_ssh_key_name }}"

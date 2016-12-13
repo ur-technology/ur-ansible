@@ -3,23 +3,17 @@
 # name: Test Inventory
 
 [tor1-bootnode]
-159.203.51.23
-159.203.51.24
+boot1-tor1-do.test.ur.technology	ansible_host=159.203.50.219
+boot2-tor1-do.test.ur.technology	ansible_host=159.203.50.220
 
 [tor1-explorer]
-159.203.50.206
+explorer1-tor1-do.test.ur.technology	ansible_host=159.203.51.23
 
 [tor1-queue]
-159.203.50.220
+queue1-tor1-do.test.ur.technology	ansible_host=159.203.51.24
 
 [tor1-transrelay]
-159.203.50.219
+relay1-tor1-do.test.ur.technology	ansible_host=159.203.50.206
 
 [tor1-miner]
-
-[tor1:children]
-tor1-bootnode
-tor1-explorer
-tor1-queue
-tor1-transrelay
-tor1-miner
+miner1-tor1-do.test.ur.technology

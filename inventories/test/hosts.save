@@ -1,0 +1,20 @@
+---
+# <ansible_base_dir>/inventories/test/hosts
+
+[tor1-bootnode]
+boot1-tor1-do.test.ur.technology ansible_host=
+boot2-tor1-do.test.ur.technology ansible_host=
+
+[tor1-explorer]
+explorer1-tor1-do.test.ur.technology ansible_host=
+
+[tor1-queue]
+queue1-tor1-do.test.ur.technology ansible_host=
+
+[tor1-transrelay]
+relay1-tor-do.test.ur.technology ansible_host=
+
+[tor1-miner]
+miner1-tor1-do.test.ur.technology 
+miner2-tor1-do.test.ur.technology
+

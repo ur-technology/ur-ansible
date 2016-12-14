@@ -1,0 +1,7 @@
+---
+# file: relay.yml
+# name: Master Transaction Relay Playbook
+- hosts: tor1-relay
+  roles:
+    - common
+    - relay

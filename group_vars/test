@@ -8,6 +8,10 @@ ur_money_queue_processor_branch: dev
 ur_network_id: 1004
 
 droplets:
-  test-bootnode1.dev.ur.technology
-  test-bootnode2.dev.ur.technology
+  - test-bootnode1.dev.ur.technology
+  - test-bootnode2.dev.ur.technology
+
+test-bootnode:
+  - test-bootnode1.dev.ur.technology
+  - test-bootnode2.dev.ur.technology
 

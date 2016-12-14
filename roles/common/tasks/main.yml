@@ -4,38 +4,6 @@
 - name: Changing SSH Options for GitHub
   command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 
-- name: Installing APT Key
-  action: apt_key=
-    keyserver="hkp://p80.pool.sks-keyservers.net:80"
-    id=58118E89F3A912897C070ADBF76221572C52609D
-
-- name: Installing Docker Deb
-  apt:
-    deb: "https://apt.dockerproject.org/repo ubuntu-xenial main"
-
-- name: Update Repository Cache
-  apt:
-    update_cache: yes
-
-- name: Install List of Packages
-  action: apt pkg={{ item }} state=installed
-  with_items: "{{ ur_common_apt_packages_list }}"
-
-- name: Installing LXC Docker Packages
-  apt:
-    pkg: lxc-docker
-    state: latest
-    purge: yes
-
-- shell: apt-cache policy docker-engine
-  args:
-    executable: /bin/bash 
-
-- name: Installing Docker APT Packages
-  action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=latest
-  with_items: "{{ ur_docker_apt_packages_list }}"
-
 - name: Starting Docker
   service:
     name: docker

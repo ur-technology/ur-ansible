@@ -1,0 +1,22 @@
+---
+# file: deploy-test.yml
+# name: Test Deployment Playbook
+- hosts: digitalocean
+
+  strategy: debug
+
+  vars_files:
+    - group_vars/test
+
+  roles:
+    - deploy-test
+    - common
+
+- hosts: test-bootnode
+
+  vars_files:
+    - group_vars/test
+    - group_vars/test-bootnode
+
+  roles:
+    - bootnode

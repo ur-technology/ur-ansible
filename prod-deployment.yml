@@ -1,0 +1,30 @@
+---
+# file: prod-deployment
+# name: Master UR Technology Deployment Playbook
+
+- include_vars: "group_vars/prod"
+
+- include: prod-bootnode.yml
+  tags: production, bootnode
+  when: deploy_production
+        and ur_deploy_prod_bootnode
+
+- include: prod-explorer.yml
+  tags: production, explorer
+  when: deploy_production
+        and ur_deploy_prod_explorer
+
+- include: prod-queue.yml
+  tags: production, queue
+  when: deploy_production
+        and ur_deploy_prod_queue
+
+- include: prod-relay.yml
+  tags: production, relay
+  when: deploy_production
+        and ur_deploy_prod_relay
+
+- include: miner.yml
+  tags: production, relay
+  when: deploy_miner
+        and ur_deploy_prod_miner

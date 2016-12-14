@@ -1,7 +1,7 @@
 ---
 # file: queue.yml
 # name: Master Queue Playbook
-- hosts: queue
+- hosts: tor1-queue
   roles:
     - common
     - queue

@@ -8,4 +8,4 @@
     name="{{ do_ssh_key_name }}"
     ssh_pub_key="{{ do_ssh_pub_key }}"
     api_token="{{ do_api_token }}"
-  register: "{{ do_ssh_key_name }}"
+  register: ur_ssh_key

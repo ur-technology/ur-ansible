@@ -1,0 +1,2 @@
+do_ssh_key_name: ur_ssh_key
+do_ssh_key_state: present

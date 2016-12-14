@@ -1,8 +1,12 @@
 ---
 # file: roles/bootnode/tasks/main.yml
 # name: Bootnode Playbook
+
 - name: Set Pipefail
   shell: set -e -o pipefail
     args=
       - executable=/bin/bash
+
+- name: Build the Docker Image
+  command: docker build - < Dockerfile
 

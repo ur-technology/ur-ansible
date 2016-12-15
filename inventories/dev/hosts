@@ -2,31 +2,26 @@
 # file: inventories/dev/hosts
 # name: Development Inventory
 
-# Bootnodes in Toronto
-[toronto-bootnode]
-138.197.138.202
-138.197.138.155
+[tor1-bootnode]
+boot2-tor1-do.dev.ur.technology		ansible_host=138.197.138.202
+boot1-tor1-do.dev.ur.technology		ansible_host=138.197.138.155
 
-# Explorers in Toronto
-[toronto-explorer]
-138.197.134.168
+[tor1-explorer]
+explorer1-tor1-do.dev.ur.technology	ansible_host=138.197.134.168
 
-# Queues in Toronto
-[toronto-queue]
+[tor1-queue]
+queue1-tor1-do.dev.ur.technology	ansible_host=138.197.134.185
 
-# Transaction Relays in Toronto
-[toronto-transrelay]
-138.197.138.35
+[tor1-relay]
+relay1-tor1-do.dev.ur.technology	ansible_host=138.197.138.35
 
-# Miners in Toronto
-[toronto-miner]
-138.197.134.147
-138.197.136.97
+[tor1-miner]
+miner1-tor1-do.dev.ur.technology	ansible_host=138.197.134.147
+miner2-tor1-do.dev.ur.technology	ansible_host=138.197.136.97
 
-# Everything in Toronto
-[toronto:children]
-toronto-bootnode
-toronto-explorer
-toronto-queue
-toronto-transrelay
-toronto-miner
+[tor1:children]
+tor1-bootnode
+tor1-explorer
+tor1-queue
+tor1-transrelay
+tor1-miner

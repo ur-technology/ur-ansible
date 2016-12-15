@@ -1,7 +1,7 @@
 ---
 # file: queue.yml
 # name: Master Queue Playbook
-- hosts: tor1-queue
+- hosts: "{{ groups['test-queue'] }}"
   roles:
     - common
     - queue

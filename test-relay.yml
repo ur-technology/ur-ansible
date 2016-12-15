@@ -1,7 +1,7 @@
 ---
 # file: relay.yml
 # name: Master Transaction Relay Playbook
-- hosts: tor1-relay
+- hosts: "{{ groups['test-relay'] }}"
   roles:
     - common
     - relay

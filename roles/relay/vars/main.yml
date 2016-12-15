@@ -1,0 +1,5 @@
+---
+# file: roles/queue/vars/main.yml
+# name: Variables for Queue role
+gur_options_file_path: /tmp
+gur_options_file: gur-options.sh

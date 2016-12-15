@@ -1,7 +1,7 @@
 ---
 # file: bootnode.yml
 # name: Master Bootnode Playbook
-- hosts: tor1-bootnode
+- hosts: "{{ groups['test-bootnode'] }}"
   roles:
     - common
     - gur

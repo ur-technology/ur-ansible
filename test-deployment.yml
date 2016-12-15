@@ -2,7 +2,11 @@
 # file: testing.yml
 # name: Experimental Testing Playbook
 
-  - include_vars: "group_vars/testing.yml"
+  - group_vars: group_vars/testing
+
+  - include: deployment/deploy-orig.yml
+    tags: test-deployment
+    when: testing
 
   - include: test-bootnode.yml
     tags: test-bootnode

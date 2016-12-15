@@ -19,8 +19,8 @@ queue1-tor1-do.dev.ur.technology	ansible_host=138.197.134.185
 miner1-tor1-do.ur.technology		ansible_host=138.197.128.43
 
 [tor1:children]
-toronto-bootnode
-toronto-explorer
-toronto-queue
-toronto-transrelay
-toronto-miner
+tor1-bootnode
+tor1-explorer
+tor1-queue
+tor1-relay
+tor1-miner

@@ -2,27 +2,25 @@
 # file: group_vars/test
 # name: Variables for Test Environment
 
-{
-  do_token: "{{ lookup( 'env','DO_API_TOKEN' ) }}"
+do_token: "{{ lookup( 'env','DO_API_TOKEN' ) }}"
 
-  testing: true
+testing: true
 
-  ur_deploy_test_bootnode: true
-  ur_deploy_test_explorer: true
-  ur_deploy_test_queue: true
-  ur_deploy_test_relay: true
-  ur_deploy_test_miner: true
+ur_deploy_test_bootnode: true
+ur_deploy_test_explorer: true
+ur_deploy_test_queue: true
+ur_deploy_test_relay: true
+ur_deploy_test_miner: true
 
 
-  ur_env: dev
-  ur_money_queue_processor_branch: dev
-  ur_network_id: 1004
+ur_env: dev
+ur_money_queue_processor_branch: dev
+ur_network_id: 1004
 
-  droplets:
-    - boot1-tor1-do.test.ur.technology
-    - boot2-tor1-do.test.ur.technology
-    - explorer1-tor1-do.test.ur.technology
-    - queue1-tor1-do.test.ur.technology
-    - relay1-tor1-do.test.ur.technology
-    - miner1-tor1-do.test.ur.technology
-}
+droplets:
+  - boot1-tor1-do.test.ur.technology
+  - boot2-tor1-do.test.ur.technology
+  - explorer1-tor1-do.test.ur.technolog
+  - queue1-tor1-do.test.ur.technology
+  - relay1-tor1-do.test.ur.technology
+  - miner1-tor1-do.test.ur.technology

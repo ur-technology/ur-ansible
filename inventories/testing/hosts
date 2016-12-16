@@ -2,18 +2,25 @@
 # file: inventories/test/hosts
 # name: Test Inventory
 
-[test-bootnode]
+[tor1-bootnode]
 boot1-tor1-do.test.ur.technology	ansible_host=159.203.50.219
 boot2-tor1-do.test.ur.technology	ansible_host=159.203.50.220
 
-[test-explorer]
+[tor1-explorer]
 explorer1-tor1-do.test.ur.technology	ansible_host=159.203.51.23
 
-[test-queue]
+[tor1-queue]
 queue1-tor1-do.test.ur.technology	ansible_host=159.203.51.24
 
-[test-relay]
+[tor1-relay]
 relay1-tor1-do.test.ur.technology	ansible_host=159.203.50.206
 
-[test-miner]
+[tor1-miner]
 miner1-tor1-do.test.ur.technology
+
+[tor1:children]
+tor1-bootnode
+tor1-explorer
+tor1-queue
+tor1-relay
+tor1-miner

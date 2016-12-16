@@ -2,28 +2,30 @@
 # file: testing.yml
 # name: Experimental Testing Playbook
 
-  - group_vars: group_vars/testing
+- name: Common Deployment
+  hosts: all:!localhost
+  roles:
+    - common
 
-  - include: deployment/deploy-orig.yml
-    tags: test-deployment
-    when: testing
+- name: Droplet Deployment Bootnodes
+  hosts: tor1-bootnode:!localhost
+  roles:
+    - gur
+    - bootnode
 
-  - include: test-bootnode.yml
-    tags: test-bootnode
-    when: testing
-          and ur_deploy_test_bootnode
+- name: Explorer Droplet Deployment
+  hosts: tor1-explorer:!localhost
+  roles:
+    - explorer
 
-  - include: test-explorer.yml
-    tags: test-explorer
-    when: testing
-          and ur_deploy_test_explorer
+- name: Droplet Deployment Queue
+  hosts: tor1-queue:!localhost
+  roles:
+    - gur
+    - queue
 
-  - include: test-queue.yml
-    tags: test-queue
-    when: testing
-          and ur_deploy_test_queue
-
-  - include: test-relay.yml
-    tags: test-relay
-    when: testing
-          and ur_deploy_test_relay
+- name: Relay Droplet Deployment
+  hosts: tor1-relay:!localhosts
+  roles:
+    - gur
+    - relay

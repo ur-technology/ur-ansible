@@ -1,7 +1,7 @@
 ---
 # file: explorer.yml
 # name: Master Explorer Playbook
-- hosts: "{{ groups['test-explorer'] }}"
+- hosts: tor1-explorer
   roles:
     - common
     - explorer

@@ -2,6 +2,11 @@
 # file: testing.yml
 # name: Experimental Testing Playbook
 
+- name: New Deployment Launch
+  hosts: localhost
+  tasks:
+    - include: roles/create-ssh-key/tasks/main.yml do_generate_ssh_key=true do_ssh_key_file=~/
+
 - name: Common Deployment
   hosts: all:!localhost
   roles:

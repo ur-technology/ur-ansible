@@ -1,0 +1,14 @@
+28240106	boot1-tor1-do.ur.technology
+28240155	boot2-tor1-do.ur.technology
+28241791	explorer1-tor1-do.ur.technology
+28241817	miner1-tor1-do.ur.technology
+28241910	relay1-tor1-do.ur.technology
+28457435	relay1-tor1-do.dev.ur.technology
+28457599	boot1-tor1-do.dev.ur.technology
+28457660	boot2-tor1-do.dev.ur.technology
+28457887	miner1-tor1-do.dev.ur.technology
+28457939	explorer1-tor1-do.dev.ur.technology
+28457954	queue1-tor1-do.dev.ur.technology
+30028517	miner2-tor1-do.dev.ur.technology
+33043683	automator.ur.technology
+33779474	monitor.ur.technology

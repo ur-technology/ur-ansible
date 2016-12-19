@@ -54,3 +54,12 @@ monitors
 
 [sensu_masters]
 monitors
+
+[zones]
+tor1-bootnode
+tor1-explorer
+tor1-queue
+tor1-relay
+tor1-miner
+automators
+

@@ -2,6 +2,12 @@
 # file: inventories/prod/hosts
 # name: Production Inventory
 
+[automators]
+automator.ur.technology			ansible_host=159.203.56.11
+
+[monitors]
+monitor.ur.technology			ansbible_host=159.203.30.175
+
 [tor1-bootnode]
 boot2-tor1-do.ur.technology		ansible_host=159.203.36.102
 boot1-tor1-do.ur.technology		ansible_host=159.203.14.117
@@ -24,3 +30,25 @@ tor1-explorer
 tor1-queue
 tor1-relay
 tor1-miner
+
+[bootnodes]
+tor1-bootnode
+
+[explorers]
+tor1-explorer
+
+[relays]
+tor1-relay
+
+[queue]
+tor1-queue
+
+[miners]
+tor1-miner
+
+[rabbitmq_servers]
+monitors
+
+[redis_servers]
+monitors
+

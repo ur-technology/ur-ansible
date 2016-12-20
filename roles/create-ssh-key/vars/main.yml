@@ -2,5 +2,3 @@
 # file: roles/create-ssh-key/vars/main.yml
 # name: Create SSH Key Variables
 
-do_ssh_key_id: "{{ do_ssh_key_name.ssh_key.id }}"
-do_ssh_pub_key: "{{ lookup('file', do_ssh_key_file ) }}"

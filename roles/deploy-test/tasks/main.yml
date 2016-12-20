@@ -1,5 +1,6 @@
 ---
 # file: roles/deploy-test/tasks/main.yml
+# Digital Ocean Deployment Role
 - name: Test Deployment Tasks
   digital_ocean: >
     api_token="{{ do_api_token }}"

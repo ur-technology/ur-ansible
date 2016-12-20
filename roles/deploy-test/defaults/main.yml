@@ -2,7 +2,6 @@
 # file: roles/deploy-test/defaults/main.yml
 # name: Test Deployment Defaults
 
-do_api_token: "{{ lookup( 'env','DO_API_TOKEN' ) }}"
 do_ssh_key_state: yes
 do_generate_ssh_key: yes
 do_ssh_key_name: ur_ssh_key
@@ -10,7 +9,7 @@ do_ssh_key_file: ~/.ssh/UR-ssh-key_rsa
 do_ssh_pub_key: "{{ lookup('file', '~/.ssh/UR-ssh-key_rsa.pub') }}"
 do_ssh_key_id: "{{ ur_ssh_key.ssh_key.id }}"
 do_backups_enabled: no
-do_image_id: 21489550
+do_image_id: 21543639
 do_private_networking: yes
 do_region_id: tor1
 do_size_id: 512mb

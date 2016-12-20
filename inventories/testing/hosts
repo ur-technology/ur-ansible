@@ -1,10 +1,11 @@
 ---
 # file: inventories/test/hosts
 # name: Test Inventory
+[digitalocean]
+localhost ansible_connection=local
 
 [automators]
-automator.ur.technology                 ansible_host=159.203.56.11
-
+localhost                               ansible_connection=local
 [monitors]
 monitor.ur.technology                   ansbible_host=159.203.30.175
 

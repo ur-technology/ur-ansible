@@ -1,0 +1,18 @@
+---
+# file: roles/deploy-test/tasks/floating-ip.yml
+# name: Assign Floating IPs to Test Deployment
+
+  - copy:
+      src: "{{ playbook_dir }}/roles/deploy-test/files/assign-floating-ips.sh"
+      dest: /root/assign-floating-ips.sh
+      owner: root
+      group: root
+      mode: "u=rwx,g=rx,o=rx"
+
+  - name: Export the API Token
+    command: export DO_API_TOKEN={{ do_api_token }}
+
+  - name: Assign Floating IPs to Test Deployment
+    shell: /root/assign-floating-ips.sh
+    args:
+      executable: /bin/bash

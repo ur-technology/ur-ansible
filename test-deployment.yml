@@ -4,11 +4,18 @@
 
 - name: New Deployment Launch
   hosts: localhost
+  roles:
+    - deploy-test
+  vars_files:
+    - group_vars/secrets.yml
+
+- name: Assign Floating IPs to New Deployment
+  hosts: localhost
   tasks:
-    - include: roles/create-ssh-key/tasks/main.yml do_generate_ssh_key=true do_ssh_key_file=~/
+    - include: roles/deploy-test/tasks/floating-ip.yml
 
 - name: Common Deployment
-  hosts: all:!localhost
+  hosts: all:!localhost:!monitor:!automator
   roles:
     - common
 
@@ -30,7 +37,7 @@
     - queue
 
 - name: Relay Droplet Deployment
-  hosts: tor1-relay:!localhosts
+  hosts: tor1-relay:!localhost
   roles:
     - gur
     - relay

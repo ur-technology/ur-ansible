@@ -1,6 +1,0 @@
----
-# file: roles/copy-ssh-key-to-do/meta/main.yml
-# name: Meta file for Copy SSH Key to Digital Ocean
-dependencies:
-  - { role: 'create-ssh-key' }
-  

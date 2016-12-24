@@ -1,8 +1,0 @@
----
-# file: roles/create-ssh-key/tasks/create_ssh_key.yml
-# name: Create SSH key if one does not exist
-- name: Create SSH Key
-  user: >
-    name="{{ ansible_user_id }}"
-    generate_ssh_key="{{ do_generate_ssh_key }}"
-    ssh_key_file="{{ do_ssh_key_file }}"

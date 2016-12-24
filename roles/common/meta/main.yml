@@ -1,5 +1,0 @@
----
-# file: roles/common/meta/main.yml
-# name: Common Role  Dependencies
-dependencies:
-  - {role: create-ssh-key }

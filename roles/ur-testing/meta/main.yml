@@ -1,0 +1,6 @@
+---
+# file: roles/deploy-test/meta/main.yml
+# name: Test Deployment Dependencies
+dependencies:
+  - { role: lin-create-ssh-key }
+  - { role: do-copy-ssh-key }

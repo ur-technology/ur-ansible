@@ -5,39 +5,42 @@
 - name: New Deployment Launch
   hosts: localhost
   roles:
-    - deploy-test
+    - ur-testing
   vars_files:
     - group_vars/secrets.yml
 
 - name: Assign Floating IPs to New Deployment
   hosts: localhost
+  strategy: debug
   tasks:
-    - include: roles/deploy-test/tasks/floating-ip.yml
+    - include: roles/ur-testing/tasks/floating-ip.yml
+  vars_files:
+    - group_vars/secrets.yml
 
 - name: Common Deployment
   hosts: all:!localhost:!monitor:!automator
   roles:
-    - common
+    - ur-common
 
 - name: Droplet Deployment Bootnodes
   hosts: tor1-bootnode:!localhost
   roles:
-    - gur
-    - bootnode
+    - ur-gur
+    - ur-bootnode
 
 - name: Explorer Droplet Deployment
   hosts: tor1-explorer:!localhost
   roles:
-    - explorer
+    - ur-explorer
 
 - name: Droplet Deployment Queue
   hosts: tor1-queue:!localhost
   roles:
-    - gur
-    - queue
+    - ur-gur
+    - ur-queue
 
 - name: Relay Droplet Deployment
   hosts: tor1-relay:!localhost
   roles:
-    - gur
-    - relay
+    - ur-gur
+    - ur-relay

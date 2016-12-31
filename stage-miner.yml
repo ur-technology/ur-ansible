@@ -1,14 +1,14 @@
 ---
 # file: stage-miner.yml
 # name: Master Miner Playbook
-# This Playbook Deploys any number of miner virtual servers as defined below in 'droplets'
 
+# This Playbook Deploys any number of miner virtual servers as defined below in 'droplets'
 # Here we tell Ansible which hosts to work on. We want to operate on Digital Ocean
 - hosts: digitalocean
 
 # Here we tell Ansible what variables to load for this play
-  vars:
-    group_vars/miner
+  vars_files:
+    group_vars/secrets.yml
 
 # Here we define the droplets we are going to deploy with this play
     droplets:
@@ -59,6 +59,8 @@
 
 roles:
   lin-common
+  lin-ufw
+  lin-fail2ban
   ur-common
   ur-gur
   ur-miner

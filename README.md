@@ -1,30 +1,39 @@
-#**THIS IS A WORK IN PROGRESS**
+****THIS IS A WORK IN PROGRESS****
 
-# ur-ansible
-##Description
-ur-ansible is a set of Ansible Playbooks that allow for the instant deployment of UR Technology cryptocurrency environments as well as full configuration management of existing computing assets.
+**ANSIBLE DEPLOYMENT AND MANAGEMENT PLAYBOOKS**
 
-Currently, this version only supports the Digital Ocean cloud but there are plans to build Vagrant support so that you could easily deploy an environment in your local machine using VirtualBox.
+This file currently only applies to the Staging Miner Playbook.
+The Staging Miner Deployment playbook is an Ansible Playbook that will allow you to deploy and continually manage the configuration of Miners in the UR Environment.
 
-There are three main playbooks that can be used:
-- deploy-dev.yml
-- deploy-test.yml
-- deploy-prod.yml
+***USAGE***
 
-These playbooks deploy and manage the respective environments (dev, test, and production) on the Digital Ocean cloud.  The playbooks are human readable and can easily be customized to deploy alternate environments.
+It is very easy to use this playbook but please read this file in its entirety before attempting to deploy any new miners.
 
-##Usage
-**NOTE:** Usage of these playbooks is extremely easy but there is one pre-requisite:  your environment must contain the DO_API_TOKEN variable containing a valid Digital Ocean API v2 token. The variable should be set manually, once per session where you intend to run the playbooks.  **Setting this variable automatically in your .bashrc file is discouraged.** Please see the DevOps thread in Slack for the correct API key to use.
+****Inventory****
+We cannot use Ansible's inventory features with Digital Ocean.  Therefore, your inventory is defined in the playbook itself under the 'droplets' key.
 
-Deploying the test environment is as easy as:
-````
-# ansible-playbook -i inventories/test/hosts deploy-test.yml #Deploys the test environment
-````
-This will setup 2 bootnodes, 1 explorer, 1 queue, 1 transaction relay, and 2 miners in Digital Ocean, all ready to go. 
+This means that you should always keep the names of the miners you want to manage with this playbook in that list.
 
-Suppose you only want to launch the bootnodes in the test environment in the Toronto1 region of Digital Ocean (currently, all computing assets are deployed only in the Toronto1 Digital Ocean region).  Then you can issue:
-````
-# ansible-playbook -i inventory/test/hosts deploy-test.yml --limit tor1-bootnode #Deploys the bootnodes in the test environment
-````
-This will set up bootnode1 and bootnode2 but what if they already exist?  If the bootnodes are already deployed, Ansible will make sure that they conform to the configuration described in the playbook! What if you wanted 2 additional bootnodes?  Yes, you can. Simply edit the inventory file at inventory/test/hosts and add two more node names to the list of bootnodes and run the previous command.  That is all there is to it!
+If you want to deploy new miners, simply add more miners to the droplets list and run the playbook. Any existing miners will only be checked to ensure their configuration is compliant.  Any new miners you have added to the list will be deployed and configured for you.
+
+****Ansible Vault****
+This playbook depends on the variables contained in the file group_vars/secrets.yml.  Make sure you have the password to that file and provide it to Ansible via Ansible Vault otherwise execution will fail.
+
+****Execution****
+Execution of the playbook is done like so:
+```
+ansible-playbook -i inventories/digitalocean stage-miner.yml --ask-vault-pass
+```
+When prompted, enter the vault password.  Easy as that!  If you would like to get verbose output, simply add '-v' to the above command.  More v's give more detail.  For example: '-vvvvv'
+
+
+***Copyright and Acceptable Use***
+This playbook was developed by borrowing plenty of example code from the Ansible Documentation and other Ansible 
+Playbooks. This playbook is the intellectual property of UR Technology. 
+This playbook may only be used by authorized  personnel for authorized purposes only.  Failure to do so may result in 
+a lot of legal trouble for you. If you are unsure whether or not you are an authorized user, you probably are not and
+should stop using this playbook immediately. 
+
+Developed by Jorge Vazquez mrjvazquez@gmail.com in the last hours of the year 2016.
+
 

@@ -1,0 +1,36 @@
+#
+# WARNING: heavily refactored in 0.9.0 release.  Please review and
+#          customize settings for your setup.
+#
+# Changes:  in most of the cases you should not modify this
+#           file, but provide customizations in jail.local file,
+#           or separate .conf files under jail.d/ directory, e.g.:
+#
+# Managed by Ansible
+
+
+[DEFAULT]
+
+ignoreip = {{ fail2ban.config.ignoreip }}
+bantime = {{ fail2ban.config.bantime }}
+maxretry = {{ fail2ban.config.maxretry }}
+action = 
+
+
+destemail = {{ fail2ban.config.destmain }}
+sender = "root@{{ ansible_hotname }}"
+
+[sshd]
+enabled = on
+banaction = ufw-ssh
+filter = sshd
+logpath = /var/log/fail2ban.log
+maxretry = {{ fail2ban.config.maxretry }}
+
+[sshd-ddos]
+enabled = on
+banaction = ufw-ssh
+
+[dropbear]
+enabled = on
+banaction = ufw-ssh

@@ -7,7 +7,7 @@
     - rule: allow
     - name: OpenSSH
 
-- name: Install Gur Service
+- name: Install Gur Definition
   copy:
     - src: gur.conf
     - dest: /etc/ufw/applications.d/gur.conf
@@ -16,14 +16,19 @@
     - mode: 0644
     - backup: no
 
+- name: Update UFW Definitions
+  command: ufw app update gur
+
+- name: Get Gur Info
+  command: ufw app info gur
+
 - name: Allow Gur
   ufw:
     - rule: allow
-    - name: Gur
+    - name: gur
 
 - name: Ensure UFW is running and enabled on boot
   service: name=ufw state=started enabled=yes
   notify:
     - reload ufw
-
 

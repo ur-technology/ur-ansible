@@ -58,8 +58,9 @@
 # on, we automate our deployment the right way and we use nothing but roles...
 
 roles:
-  common
-  gur
-  miner
+  lin-common
+  ur-common
+  ur-gur
+  ur-miner
 
 # How easy was that?

@@ -11,14 +11,14 @@
 
 - name: Assign Floating IPs to New Deployment
   hosts: localhost
-  strategy: debug
   tasks:
     - include: roles/ur-testing/tasks/floating-ip.yml
   vars_files:
     - group_vars/secrets.yml
 
 - name: Common Deployment
-  hosts: all:!localhost:!monitor:!automator
+  hosts: all:!monitor:!automator:!localhost
+  strategy: debug
   roles:
     - ur-common
 

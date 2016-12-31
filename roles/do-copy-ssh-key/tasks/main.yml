@@ -1,11 +1,11 @@
 ---
-# file: roles/copy-ssh-key-to-do/tasks/main.yml
+# file: {{ playbook_dir }}/roles/do-copy-ssh-key/tasks/main.yml
 # name: Copy SSH Key to Digital Ocean
 - name: Copy SSH key to Digital Ocean
-  digital_ocean:
+  digital_ocean: >
     state="{{ do_ssh_key_state }}"
     command="ssh"
     name="{{ do_ssh_key_name }}"
     ssh_pub_key="{{ do_ssh_pub_key }}"
     api_token="{{ do_api_token }}"
-  register: ur_ssh_key
+  register: new_ssh_key

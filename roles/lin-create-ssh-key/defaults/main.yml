@@ -1,9 +1,9 @@
 ---
 # Role defaults
 
-do_ssh_key_id: "{{ ur_ssh_key.ssh_key.id }}"
+do_ssh_key_id: "{{ new_ssh_key.ssh_key.id }}"
 do_ssh_pub_key: "{{ lookup('file', do_ssh_key_file ) }}"
 do_ssh_key_state: present
 do_generate_ssh_key: yes
-do_ssh_key_name: ur_ssh_key
-do_ssh_key_file: ~/.ssh/UR-ssh-key_rsa
+do_ssh_key_name: new_ssh_key
+do_ssh_key_file: ~/.ssh/new-ssh-key

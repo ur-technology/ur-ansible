@@ -1,0 +1,29 @@
+---
+# file: {{ ansible_playbook }}/roles/lin-ufw/tasks/main.yml
+# name: Sets UFW rules
+
+- name: Allow OpenSSH
+  ufw:
+    - rule: allow
+    - name: OpenSSH
+
+- name: Install Gur Service
+  copy:
+    - src: gur.conf
+    - dest: /etc/ufw/applications.d/gur.conf
+    - owner: root
+    - group: root
+    - mode: 0644
+    - backup: no
+
+- name: Allow Gur
+  ufw:
+    - rule: allow
+    - name: Gur
+
+- name: Ensure UFW is running and enabled on boot
+  service: name=ufw state=started enabled=yes
+  notify:
+    - reload ufw
+
+

@@ -1,0 +1,12 @@
+---
+# file: {{ playbook_dir }}/roles/lin-common/vars/main.yml
+# name: Common Linux Playbook Variables
+
+# Fail2Ban variables
+fail2ban:
+  config:
+    ignoreip: 127.0.0.1/8
+    bantime: 3600
+    maxretry: 3
+
+

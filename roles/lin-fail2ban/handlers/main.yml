@@ -1,0 +1,9 @@
+---
+file: {{ playbook_dir }}/roles/lin-fail2ban/handlers/main.yml
+name: Fail2Ban Handlers
+
+- name: restart fail2ban
+  service: name=fail2ban state=restarted
+
+- name: reload fail2ban
+  service: name=fail2ban state=reloaded

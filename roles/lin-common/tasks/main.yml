@@ -1,0 +1,19 @@
+---
+# file: common/tasks/main.yml
+# name: Common Configuration Playbook
+- name: Changing SSH Options for GitHub
+  command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+
+- name: Starting Docker
+  service:
+    name: docker
+    state: started
+
+- name: Add deploy user
+  user: name={{ ur_deploy_user_name }} password="{{ ur_deploy_user_password }}" shell=/bin/bash
+
+- name: Add deploy user to sudoers
+  lineinfile: dest=/etc/sudoers
+    regexp="{{ ur_deploy_user_name }} ALL"
+    line="{{ ur_deploy_user_name }} ALL=(ALL) ALL"
+    state=present

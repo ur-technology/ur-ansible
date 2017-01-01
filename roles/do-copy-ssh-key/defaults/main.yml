@@ -1,7 +1,6 @@
 ---
-# file: roles/copy-ssh-key-to-do/defaults/main.yml
-# name: Defaults for Copy SSH Key to Digital Ocean
+# file: roles/do-ssh-key/defaults/main.yml
+# name: Defaults for Role
 
-do_ssh_pub_key: "{{ lookup('file','~/.ssh/new_ssh_key.pub') }}"
-do_ssh_key_id: "{{ new_ssh_key.ssh_key.id }}"
-
+do_ssh_pub_key: "{{ lookup('file','~/.ssh/automator-root-rsa.pub') }}"
+do_ssh_key_id: "{{ automator_ssh_key.ssh_key.id }}"

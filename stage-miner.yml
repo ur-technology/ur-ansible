@@ -2,62 +2,35 @@
 # file: stage-miner.yml
 # name: Master Miner Playbook
 
-# This Playbook Deploys any number of miner virtual servers as defined below in stage-miner.yml
-# Here we tell Ansible which hosts to work on. We want to operate on Digital Ocean
-- hosts: digitalocean
+# This Playbook Deploys any number of miner virtual servers as defined in the stage-miner
+# role.  Here we tell Ansible which hosts to work on. We want to operate on localhost 
+# because that is the way that the Digital Ocean Ansible module wants us to work. In 
+# essence, we are operating on the Digital Ocean API. We give this playbook a single 
+# variable which is stored in an Ansible Vault file.  Everything else is pulled in from
+# the roles assigned to this deployment.  This makes maintenance of this playbook a
+# walk in the park as only the roles assigned to these hosts need to be modified.
+#
+# The role names are prefixed with the category they belong to  as follows:
+# - do (Digital Ocean): these are roles that operate on the DO API exclusively.
+# - lin (Linux): these roles affect the OS and installable packages
+# - ur (UR Technology): these roles are specific to software or settings required by
+#   any UR Technology software.  Note that these roles may at times include plays
+#   that might also be categorized as Linux-specific but we include them here because
+#   it makes a lot more sense.
+#
+# All roles are designed to be idempotent to conform with Ansible's philosophy.
+
+- name: New Staging Miner Deployment by Jorge Vazquez
+  hosts: localhost
   vars_files:
-    group_vars/secrets.yml
-    group_vars/stage-miner.yml
-
-# Here we tell Ansible the tasks we want it to execute on the droplets above
-  tasks:
-    - name: Checking for the existence of the Automator SSH key.  
-      user: >
-        name=root
-        generate_ssh_key=yes
-        ssh_key_file=~/.ssh/automator-root-rsa
-
-    - name: Making sure that our Automator SSH key exists in Digital Ocean.
-      digital_ocean: >
-        state=present
-        command=ssh
-        name=ur_ssh_key
-        ssh_pub_key={{ lookup('file', '~/.ssh/automator-root-rsa.pub') }}
-        api_token={{ do_token }}
-      register: automator-ssh-key
-
-    - debug: msg="The Automator SSH Key ID is  {{ automator-ssh-key.ssh_key.id }}"
-
-# If this Playbook failes, it is most likely because Digital Ocean has changed the image ID of the
-# image that we are trying to deploy.  The image ID should correspond to the Docker on Ubuntu image.
-    - name: Deploying Droplets on the Digital Ocean platform...
-      digital_ocean: >
-        api_token="{{ do_token }}"
-        backups_enabled=no
-        command=droplet
-        image_id=21132217
-        name="{{ item }}"
-        private_networking=yes
-        region_id=tor1
-        size_id=512mb
-        ssh_key_ids="{{ automator-ssh-key.ssh_key.id }}"
-        unique_name=yes
-        virtio=yes
-        wait=yes
-        wait_timeout=300
-      with_items: "{{ droplets }}"
-      register: "{{ item }}"
-
-# Most of the above steps should be broken down into roles, but at the present time it is much easier
-# to do things this way because of the way the Ansible Digital Ocean module works.  From this point
-# on, we automate our deployment the right way and we use nothing but roles...
-
+    - group_vars/secrets.yml
   roles:
-    lin-common
-    lin-ufw
-    lin-fail2ban
-    ur-common
-    ur-gur
-    ur-miner
+    - do-ssh-key
+    - do-deploy
+    - lin-common
+    - lin-ufw
+    - lin-fail2ban
+    - ur-common
+    - ur-gur
 
 # How easy was that?

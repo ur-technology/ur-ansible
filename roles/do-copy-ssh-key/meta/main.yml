@@ -1,6 +1,6 @@
 ---
-# file: roles/copy-ssh-key-to-do/meta/main.yml
-# name: Meta file for Copy SSH Key to Digital Ocean
+# file: {{ playbook_dir }}/roles/do-ssh-key/meta/main.yml
+# name: Meta file for SSH Digital Ocean Role
 dependencies:
   - { role: 'lin-create-ssh-key' }
   

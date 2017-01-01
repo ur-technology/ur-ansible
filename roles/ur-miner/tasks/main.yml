@@ -1,11 +1,11 @@
 ---
-# file: roles/deploy-test/tasks/main.yml
-# Digital Ocean Deployment Role
-- name: Test Deployment Tasks
+# file: {{ playbook_dir }}/roles/ur-miner/tasks/main.yml
+# Miner Deployment Role
+- name: Miner Deployment
   digital_ocean: >
-    api_token="{{ do_api_token }}"
+    api_token="{{ do_token }}"
     backups_enabled="{{ do_backups_enabled }}"
-    command=droplet
+    command="{{ do_command }}"
     image_id="{{ do_image_id }}"
     name="{{ item }}"
     private_networking="{{ do_private_networking }}"

@@ -2,27 +2,33 @@
 # file: group_vars/all
 # name: Variables that apply to all playbooks
 
-ansible_ssh_private_key_file: /root/.ssh/UR-ssh-key_rsa
+ansible_ssh_private_key_file: /root/.ssh/automator-ssh-key
 
 dynamic_data_store: "{{ ansible_conf_path }}/data/dynamic"
 static_data_store: "{{ ansible_conf_path }}/data/static"
 
+ur:
+  deploy:
+    testing:
+      - deploy_test_bootnode: false
+      - deploy_test_explorer: false
+      - deploy_test_queue: false
+      - deploy_test_miner: false
 
+    staging:
+      - deploy_stage_miners: true
 
-testing: true
-ur_deploy_test_bootnode: true
-ur_deploy_test_explorer: true
-ur_deploy_test_queue: true
-ur_deploy_test_miner: true
+  deploy_user: deploy
+  deploy_user_groups:
+    - sudo
+    - deploy
 
+  deploy_user_workdir: /home/deploy
 
+  gur_port: 9595
 
-ur_user: deploy
-ur_user_groups:
-  - sudo
-  - deploy
-ur_user_workdir: /home/deploy
-gur_port: 9595
-ur_env: dev
-ur_money_queue_processor_branch: dev
-ur_network_id: 1004
+  env: dev
+  
+  money_queue_processor_branch: dev
+
+  network_id: 1004

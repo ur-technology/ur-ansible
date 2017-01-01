@@ -1,0 +1,25 @@
+---
+# file: {{ playbook_dir }}/roles/ur-miner/defaults/main.yml
+# name: Miner Deployment Defaults
+
+droplets:
+  - miner3.ur.technology
+  - miner4.ur.technology
+
+do_ssh_key_state: present
+do_generate_ssh_key: yes
+do_ssh_key_name: automator_ssh_key
+do_ssh_key_file: ~/.ssh/automator-root-rsa
+do_ssh_pub_key: "{{ lookup('file', '~/.ssh/automator-root-rsa.pub') }}"
+
+do_backups_enabled: no
+do_command: droplet
+do_image_id: 21543639
+do_private_networking: yes
+do_region_id: tor1
+do_size_id: 512mb
+do_ssh_key_id: "{{ automator_ssh_key.ssh_key.id }}"
+do_unique_name: yes
+do_virtio: yes
+do_wait: yes
+do_wait_timeout: 300

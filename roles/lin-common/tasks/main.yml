@@ -8,12 +8,26 @@
   service:
     name: docker
     state: started
+  with_items:
+    - droplets
 
 - name: Add deploy user
   user: name={{ ur_deploy_user_name }} password="{{ ur_deploy_user_password }}" shell=/bin/bash
+  with_items:
+    - droplets
 
 - name: Add deploy user to sudoers
   lineinfile: dest=/etc/sudoers
     regexp="{{ ur_deploy_user_name }} ALL"
     line="{{ ur_deploy_user_name }} ALL=(ALL) ALL"
     state=present
+  with_items:
+    - droplets
+
+- name: Install List of APT Packages
+  action: apt pkg={{ item }} state=installed
+  with_nested: 
+    - droplets
+    - {{ ur_common_apt_packages_list }}
+
+

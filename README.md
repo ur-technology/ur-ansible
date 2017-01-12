@@ -22,7 +22,7 @@ This playbook depends on the variables contained in the file group_vars/secrets.
 ****Execution****
 Execution of the playbook is done like so:
 ```
-ansible-playbook -i inventories/digitalocean stage-miner.yml --ask-vault-pass
+ansible-playbook -i inventories/miners stage-miner.yml --ask-vault-pass
 ```
 When prompted, enter the vault password.  Easy as that!  If you would like to get verbose output, simply add '-v' to the above command.  More v's give more detail.  For example: '-vvvvv'
 

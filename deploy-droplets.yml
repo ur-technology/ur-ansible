@@ -23,21 +23,4 @@
     - do-ssh-key
     - do-deploy
 
-- name: Apply Basic Linux Configuration
-  hosts: miners
-  roles:
-    - lin-common
-    - lin-ufw
-    - lin-fail2ban
-
-- name: Apply UR Cofigurations
-  hosts: miner3.ur.technology miner4.ur.technology
-  roles:
-    - ur-common
-    - ur-gur
-    - ur-miner
-
-
-# - include: stage-miner.yml
-
 # How easy was that?

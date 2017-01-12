@@ -1,7 +1,0 @@
----
-# file: queue.yml
-# name: Master Queue Playbook
-- hosts: "{{ groups['test-queue'] }}"
-  roles:
-    - common
-    - queue

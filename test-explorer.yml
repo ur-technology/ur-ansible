@@ -1,7 +1,0 @@
----
-# file: explorer.yml
-# name: Master Explorer Playbook
-- hosts: tor1-explorer
-  roles:
-    - common
-    - explorer

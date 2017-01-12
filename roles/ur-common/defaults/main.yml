@@ -1,17 +1,17 @@
 ---
-# file: roles/common/defaults/main.yml
-# name: Common Variables 
+# file: {{ playbook_dir }}/roles/lin-common/defaults/main.yml
+# name: Default Linux Variables 
 
-ur_deploy_user_name: deploy
-ur_deploy_user_password: EqJCDtP7F3qK
+common_apt_packages:
+        - apt-transport-https
+        - ca-certificates
+        - "linux-image-extra-{{ ansible_kernel }}"
+        - linux-image-extra-virtual
+        - docker-engine
 
-ur_common_apt_packages_list:
-  - transport-http
-  - ca-certificates
-
-ur_docker_apt_packages_list:
-  - linux-image-extra-$(uname -r)
-  - linux-image-extra-virtual
-  - docker-engine
-
-
+deploy_user_name: deploy
+deploy_user_workdir: /home/deploy
+deploy_user_groups:
+  - sudo
+  - deploy
+deploy_user_shell: /bin/bash

@@ -1,0 +1,10 @@
+---
+# file: {{ playbook_dir }}/roles/lin-fail2ban/defaults/main.yml
+# name: Fail2Ban Defaults
+
+fail2ban_config_ignoreip: 127.0.0.1
+fail2ban_config_bantime: 3600
+fail2ban_config_maxretry: 5
+
+fail2ban_config_destmain: k8g3h4y9w1m0f8i5@urtechnology.slack.com
+

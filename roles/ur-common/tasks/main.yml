@@ -10,10 +10,14 @@
     state: started
 
 - name: Add deploy user
-  user: name={{ ur_deploy_user_name }} password="{{ ur_deploy_user_password }}" shell=/bin/bash
+  user:
+    name: "{{ deploy_user_name }}" 
+    password: "{{ deploy_user_password }}" 
+    shell: "{{ deploy_user_shell }}"
 
 - name: Add deploy user to sudoers
-  lineinfile: dest=/etc/sudoers
-    regexp="{{ ur_deploy_user_name }} ALL"
-    line="{{ ur_deploy_user_name }} ALL=(ALL) ALL"
-    state=present
+  lineinfile: 
+    dest: /etc/sudoers
+    regexp: "{{ deploy_user_name }} ALL"
+    line: "{{ deploy_user_name }} ALL=(ALL) ALL"
+    state: present

@@ -11,21 +11,21 @@
 
 [DEFAULT]
 
-ignoreip = {{ fail2ban.config.ignoreip }}
-bantime = {{ fail2ban.config.bantime }}
-maxretry = {{ fail2ban.config.maxretry }}
-action = 
+ignoreip = {{ fail2ban_config_ignoreip }}
+bantime = {{ fail2ban_config_bantime }}
+maxretry = {{ fail2ban_config_maxretry }}
+action = ufw-ssh
 
 
-destemail = {{ fail2ban.config.destmain }}
-sender = "root@{{ ansible_hotname }}"
+destemail = {{ fail2ban_config_destmain }}
+sender = "root@{{ ansible_hostname }}"
 
 [sshd]
 enabled = on
 banaction = ufw-ssh
 filter = sshd
 logpath = /var/log/fail2ban.log
-maxretry = {{ fail2ban.config.maxretry }}
+maxretry = {{ fail2ban_config_maxretry }}
 
 [sshd-ddos]
 enabled = on

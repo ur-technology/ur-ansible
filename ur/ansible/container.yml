@@ -1,0 +1,199 @@
+version: "2"
+services:
+  # Add your containers here, specifying the base image you want to build from
+  # For example:
+  #
+  # web:
+  #   image: ubuntu:trusty
+  #   ports:
+  #     - "80:80"
+  #   command: ['/usr/bin/dumb-init', '/usr/sbin/apache2ctl', '-D', 'FOREGROUND']
+  #   dev_overrides:
+  #     environment:
+  #       - "DEBUG=1"
+  #
+registries: {}
+  # Add optional registries used for deployment. For example:
+  #  google:
+  #    url: https://gcr.io
+  #    namespace: my-cool-project-xxxxxx   
+
+ bootnode-1a:
+    container_name: bootnode-1a
+    hostname: bootnode-1a
+    build:
+      context: .
+      dockerfile: ./gur.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/bootnode.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "19595:19595"
+      - "19595:19595/udp"
+
+  bootnode-2a:
+    container_name: bootnode-2a
+    hostname: bootnode-2a
+    build:
+      context: .
+      dockerfile: ./gur.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/bootnode.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "19595:19595"
+      - "19595:19595/udp"
+
+  bootnode-3:
+    container_name: bootnode-3
+    hostname: bootnode-3
+    build:
+      context: .
+      dockerfile: ./gur.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/bootnode.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "19595:19595"
+      - "19595:19595/udp"
+
+  explorer-1:
+    container_name: explorer-1
+    hostname: explorer-1
+    build:
+      context: .
+      dockerfile: ./explorer.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/explorer.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "80:8080"
+      - "9595:9595"
+
+  miner-1:
+    container_name: miner-1
+    hostname: miner-1
+    build:
+      context: .
+      dockerfile: ./gur.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/miner.sh
+    volumes:
+      # - ethash:/home/deploy/.ethash
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+
+  miner-2:
+    container_name: miner-2
+    hostname: miner-2
+    build:
+      context: .
+      dockerfile: ./gur.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/miner.sh
+    volumes:
+      # - ethash:/home/deploy/.ethash
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+
+  transaction-relay-1:
+    container_name: transaction-relay-1
+    hostname: transaction-relay-1
+    build:
+      context: .
+      dockerfile: ./identifier.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/transaction-relay.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "9595:9595"
+      - "9596:9596"
+      - "19595:19595"
+      - "19595:19595/udp"
+
+  transaction-relay-2:
+    container_name: transaction-relay-2
+    hostname: transaction-relay-2
+    build:
+      context: .
+      dockerfile: ./identifier.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - EXPLORER_1_PUBLIC_IP=${EXPLORER_1_PUBLIC_IP}
+    command: files/transaction-relay.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "9595:9595"
+      - "9596:9596"
+      - "19595:19595"
+      - "19595:19595/udp"
+
+  identifier-1:
+    container_name: identifier-1
+    hostname: identifier-1
+    build:
+      context: .
+      dockerfile: ./identifier.dockerfile
+    environment:
+      - UR_ENV=${UR_ENV}
+      - UR_NETWORK_ID=${UR_NETWORK_ID}
+      - BOOTNODE_1_PUBLIC_IP=${BOOTNODE_1_PUBLIC_IP}
+      - BOOTNODE_2_PUBLIC_IP=${BOOTNODE_2_PUBLIC_IP}
+      - PRIVILEGED_UTI_OUTBOUND_PASSWORD=${PRIVILEGED_UTI_OUTBOUND_PASSWORD}
+    command: files/identifier.sh
+    volumes:
+      - ./files:/home/deploy/files
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8080:8080"
+      - "5858:5858"

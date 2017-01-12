@@ -1,6 +1,7 @@
 ---
 # file: roles/common/tasks/main.yml
 # name: Gur Playbook
+
 - name: Set Up the Environment
   environment:
     - BOOTNODES_OPTION: "--bootnodes {{ bootnode1_enode_url }}, {{ bootnode2_enode_url }}"

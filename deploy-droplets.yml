@@ -1,0 +1,43 @@
+---
+# file: deploy-droplets.yml
+# name: Master Droplet Deployment
+
+# This Playbook Deploys any number of Docker on Ubuntu droplets, quickly provisioning
+# these virtual servers.  All this playbook does is launch the virtual servers in a
+# default state.  This playbook is meant to be called from a shell script if you are
+# looking to fully automate deployment of the environment.
+#
+# In order to deploy any droplets, their name needs to be included in the file that
+# is located at group_vars/localhost.  Make sure that any names you specify for the
+# new droplets does not conflict with any existing droplets or that specific droplet
+# will simply not be created due to idempotency.
+#
+# Written by Jorge Vazquez (mrjvazquez@gmail.com)
+
+- name: New Staging Miner Deployment
+  hosts: localhost
+  vars_files:
+    - group_vars/deployment.yml
+    - group_vars/secrets.yml
+  roles:
+    - do-ssh-key
+    - do-deploy
+
+- name: Apply Basic Linux Configuration
+  hosts: miners
+  roles:
+    - lin-common
+    - lin-ufw
+    - lin-fail2ban
+
+- name: Apply UR Cofigurations
+  hosts: miner3.ur.technology miner4.ur.technology
+  roles:
+    - ur-common
+    - ur-gur
+    - ur-miner
+
+
+# - include: stage-miner.yml
+
+# How easy was that?

@@ -1,33 +1,35 @@
 ---
-# file: common/tasks/main.yml
-# name: Common Configuration Playbook
+# file: {{ playbook_dir }}/common/tasks/main.yml
+# name: Common Linux Configuration Tasks
+
 - name: Changing SSH Options for GitHub
   command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+
+- name: Add deployment group
+  group:
+    name: "{{ deploy_user_name }}"
+    state: present
+
+- name: Add deploy user
+  user: 
+    name: "{{ deploy_user_name }}" 
+    password: "{{ deploy_user_password }}"
+    shell: "{{ deploy_user_shell }}"
+    groups: "{{ deploy_user_groups }}"
+
+- name: Add deploy user to sudoers
+  lineinfile: dest=/etc/sudoers
+    regexp="{{ deploy_user_name }} ALL"
+    line="{{ deploy_user_name }} ALL=(ALL) ALL"
+    state=present
+
+- name: Install Common APT Packages
+  action: apt pkg={{ item }} state=installed
+  with_items: 
+    - "{{ common_apt_packages }}"
 
 - name: Starting Docker
   service:
     name: docker
     state: started
-  with_items:
-    - droplets
-
-- name: Add deploy user
-  user: name={{ ur_deploy_user_name }} password="{{ ur_deploy_user_password }}" shell=/bin/bash
-  with_items:
-    - droplets
-
-- name: Add deploy user to sudoers
-  lineinfile: dest=/etc/sudoers
-    regexp="{{ ur_deploy_user_name }} ALL"
-    line="{{ ur_deploy_user_name }} ALL=(ALL) ALL"
-    state=present
-  with_items:
-    - droplets
-
-- name: Install List of APT Packages
-  action: apt pkg={{ item }} state=installed
-  with_nested: 
-    - droplets
-    - {{ ur_common_apt_packages_list }}
-
 

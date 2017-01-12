@@ -6,8 +6,6 @@
   ufw:
     rule: allow
     name: OpenSSH
-  with_items:
-    droplets
 
 - name: Install Gur Definition
   copy:
@@ -17,29 +15,19 @@
     group: root
     mode: 0644
     backup: no
-  with_items:
-    droplets
 
 - name: Update UFW Definitions
   command: ufw app update gur
-  with_items:
-    droplets
 
 - name: Get Gur Info
   command: ufw app info gur
-  with_items:
-    droplets
 
 - name: Allow Gur
   ufw:
     rule: allow
     name: gur
-  with_items:
-    droplets
 
 - name: Ensure UFW is running and enabled on boot
   service: name=ufw state=started enabled=yes
   notify: 
     reload ufw
-  with_items:
-    droplets

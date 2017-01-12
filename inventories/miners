@@ -1,0 +1,8 @@
+[miners]
+miner3.ur.technology ansible_host=138.197.131.204 ansible_user=root ansible_ssh_private_key_file=/root/.ssh/automator-root-rsa
+miner4.ur.technology ansible_host=138.197.131.157 ansible_user=root ansible_ssh_private_key_file=/root/.ssh/automator-root-rsa
+miner5.ur.technology ansible_host=138.197.131.11 ansible_user=root ansible_ssh_private_key_file=/root/.ssh/automator-root-rsa
+
+
+
+

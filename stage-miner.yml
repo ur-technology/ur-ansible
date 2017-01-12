@@ -2,35 +2,31 @@
 # file: stage-miner.yml
 # name: Master Miner Playbook
 
-# This Playbook Deploys any number of miner virtual servers as defined in the stage-miner
-# role.  Here we tell Ansible which hosts to work on. We want to operate on localhost 
-# because that is the way that the Digital Ocean Ansible module wants us to work. In 
-# essence, we are operating on the Digital Ocean API. We give this playbook a single 
-# variable which is stored in an Ansible Vault file.  Everything else is pulled in from
-# the roles assigned to this deployment.  This makes maintenance of this playbook a
-# walk in the park as only the roles assigned to these hosts need to be modified.
+# This is the main Miner playbook that will install all required components
+# to UR miners specified in the group_vars/miners.yml file.
 #
-# The role names are prefixed with the category they belong to  as follows:
-# - do (Digital Ocean): these are roles that operate on the DO API exclusively.
-# - lin (Linux): these roles affect the OS and installable packages
-# - ur (UR Technology): these roles are specific to software or settings required by
-#   any UR Technology software.  Note that these roles may at times include plays
-#   that might also be categorized as Linux-specific but we include them here because
-#   it makes a lot more sense.
-#
-# All roles are designed to be idempotent to conform with Ansible's philosophy.
+# All roles are designed to be idempotent.
 
-- name: New Staging Miner Deployment by Jorge Vazquez
-  hosts: localhost
+- name: Load Variables
+  hosts: miners
   vars_files:
     - group_vars/secrets.yml
+    - group_vars/deployment.yml
+
+- name: Common Linux Configuration 
+  vars_files:
+    - group_vars/secrets.yml
+  hosts: miners
   roles:
-    - do-ssh-key
-    - do-deploy
     - lin-common
     - lin-ufw
     - lin-fail2ban
-    - ur-common
-    - ur-gur
 
-# How easy was that?
+- name: UR Technology Configuration
+  hosts: miners
+  vars_files:
+    - group_vars/secrets.yml
+  roles:
+   - ur-common
+   - ur-gur
+

@@ -20,7 +20,7 @@
 - name: Install config
   template: src=jail.local.j2 dest=/etc/fail2ban/jail.local
   notify:
-    reload fail2ban
+    reload-fail2ban
 
 - name: Ensure Fail2Ban is running and enabled on boot.
   service: name=fail2ban state=started enabled=yes

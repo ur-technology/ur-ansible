@@ -1,8 +1,0 @@
----
-# file: group_vars/dev-floating-ip
-# name: Floating IPs for Development Group
-bootnode1_dev_ip:159.203.50.206
-bootnode2_dev_ip:159.203.50.219
-explorer1_dev_ip:159.203.50.220
-transrelay1_dev_ip:159.203.51.24
-queue1_dev_ip:159.203.51.23

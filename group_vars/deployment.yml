@@ -1,0 +1,39 @@
+---
+# file: group_vars/deployment.yml
+# name: Variables for Deployment
+
+# First, we tell Ansible the names of the droplets we want it to deploy.  All
+# of the droplets listed below will be created if they do not already exist.
+# Any existing droplets will be ignored for deployment.
+droplets:
+  - miner3.ur.technology
+  - miner4.ur.technology
+  - miner5.ur.technology
+
+# The hosts listed above will be automatically placed in the dynamic invenroty
+# that will be created for you so you can use them with the configuration 
+# playbook.
+#
+# Bwlow, we specify all of the other required variables to complete all of the
+# required post-deployment configuration tasks.  These settings were taken from
+# the original setup scripts by John Reitano.
+#
+# Settings contained in the gur_options.sh file are contained in secrets.yml
+
+
+
+####################### EXPERIMENTAL VARIABLES BELOW #########################
+# Set the following variable to true if you are deploying a test environment.
+
+# testing: true
+# The following variables have no effect if testing is set to false.  Set 
+# the appropriate variables to false if you don't want that particular group
+# to be deployed.
+# ur_deploy_test_bootnode: true
+# ur_deploy_test_explorer: true
+# ur_deploy_test_queue: true
+# ur_deploy_test_relay: true
+# ur_deploy_test_miner: true
+
+
+
